@@ -47,6 +47,7 @@ const Customizer = () => {
     const decalType = DecalTypes[type];
 
     state[decalType.stateProperty] = result;
+    console.log(result);
 
     if (!activeFilterTab[decalType.filterTab]) {
       handleActiveFilterTab(decalType.filterTab)
@@ -73,6 +74,20 @@ const Customizer = () => {
         handleDecals(type, result);
         setActiveEditorTab("");
       })
+  }
+
+  const toggleDecals = (type) => {
+    switch(type) {
+      case "logoShirt":
+        state.isFullTexture ? state.isFullTexture = false : state.isFullTexture = true;
+        break;
+      case "stylishShirt":
+        state.isLogoTexture ? state.isLogoTexture = false : state.isLogoTexture = true;
+        break;
+      default: 
+        state.isFullTexture = false;
+        state.isLogoTexture = true;
+    }
   }
 
   return (
@@ -114,7 +129,7 @@ const Customizer = () => {
                 tab={tab}
                 isFilterTab
                 isActiveTab=""
-                handleClick={() => {}} 
+                handleClick={() => toggleDecals(tab.name)} 
               />
             ))}
           </motion.div>

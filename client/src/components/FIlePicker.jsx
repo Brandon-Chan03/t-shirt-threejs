@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { useSnapshot } from 'valtio'
+import { getContrastingColor } from '../config/helpers'
 
 import CustomButton from './CustomButton'
 import state from '../store'
@@ -17,7 +18,7 @@ const FIlePicker = ({ file, setFile, readFile }) => {
           accept="image/*"
           onChange={(e) => setFile(e.target.files[0])}
         />
-        <label htmlFor="file-upload" className="filepicker-label" style={{ backgroundColor: snap.color }}>
+        <label htmlFor="file-upload" className="filepicker-label" style={{ backgroundColor: snap.color, color: getContrastingColor(snap.color)}}>
           Upload File
         </label>
 
